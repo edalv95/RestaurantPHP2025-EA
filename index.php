@@ -177,11 +177,13 @@ $lista_menu = $sentencia->fetchall(PDO::FETCH_ASSOC);
 
 
         </header>
-        <main>
-
+        </br>
+        </br>
+        </br>
         <!-- Chefs -->
         <section id="Chefs" class="container mt-4 text-center">
           <h2>Nuestros Chefs </h2>
+          </br>
             <div class="row">
             <?php foreach($lista_colaboradores as $key => $value){ ?>
               <div class="col-md-4">
@@ -201,7 +203,9 @@ $lista_menu = $sentencia->fetchall(PDO::FETCH_ASSOC);
             <?php } ?>
 
         </section>
-
+            </br>
+            </br>
+            </br>
         <!--  Testimonios -->
         <section id="Testimonios" calss="bg-light py-5">
         
@@ -234,6 +238,8 @@ $lista_menu = $sentencia->fetchall(PDO::FETCH_ASSOC);
 
         </div>
         </section>
+              </br>
+
 
         <!-- Menu -->
         <section id="Carta" class="container mt-4">

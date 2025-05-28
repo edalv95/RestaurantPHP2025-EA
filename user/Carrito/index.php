@@ -35,7 +35,7 @@ if(isset($_GET['txtID'])) {
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+   
                     <th scope="col">Nombre</th>
                     <th scope="col">Foto</th>
                     <th scope="col">Descripcion</th>
@@ -52,7 +52,7 @@ if(isset($_GET['txtID'])) {
                         $lista_carrito_usuario[] = $value;
                 ?>
                 <tr class="">
-                    <td scope="row"><?php echo $value['carrito_id']; ?></td>
+
                     <td><?php echo $value['nombre']; ?></td>
                     <td>
                         <?php if (!empty($value['foto'])): ?>
