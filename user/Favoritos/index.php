@@ -1,7 +1,6 @@
 <?php 
 
 include("../../user/templates/header.php");
-include("../../admin/bd.php");
 
 //Traer todos los registros
 $sentencia = $conexion->prepare("SELECT tbl_favoritos.ID AS favorito_id, tbl_favoritos.*, M.* FROM tbl_favoritos JOIN tbl_menu AS M ON menu_ID = M.ID");

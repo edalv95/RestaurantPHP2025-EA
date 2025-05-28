@@ -1,7 +1,6 @@
 <?php 
 
 include("../../user/templates/header.php");
-include("../../admin/bd.php");
 
 $sentencia = $conexion->prepare("SELECT * FROM tbl_transaccion as T INNER JOIN tbl_menu as M ON T.transaccion_Menu_ID=M.ID WHERE T.transaccion_Usuario_ID = :transaccion_usuario_ID ORDER BY T.transaccion_Fecha DESC");
 $sentencia->bindParam(':transaccion_usuario_ID', $_SESSION['id']);

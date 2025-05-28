@@ -1,16 +1,15 @@
 <?php 
 
 include("../../user/templates/header.php");
-include("../../admin/bd.php");
 
-//Traer todos los registros
+
 $sentencia = $conexion->prepare("SELECT tbl_carrito.ID AS carrito_id, tbl_carrito.*, M.* FROM tbl_carrito JOIN tbl_menu AS M ON menu_ID = M.ID");
 $sentencia->execute();
 $lista_carrito = $sentencia->fetchall(PDO::FETCH_ASSOC);
 $total = 0;
 $lista_carrito_usuario = array();
 
-//Borrar por txtID
+
 if(isset($_GET['txtID'])) {
     $txtID = $_GET['txtID'];
     $sentencia = $conexion->prepare("DELETE FROM tbl_carrito WHERE ID = :ID");

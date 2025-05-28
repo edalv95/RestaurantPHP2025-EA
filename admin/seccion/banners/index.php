@@ -110,11 +110,15 @@ if(isset($_GET['txtID'])) {
             <section id="banner" class="container-fluid p-0">
              <div class="banner-img" style="position:relative; background:url('../../../images/banners/<?php echo $value['foto']?>') center/cover no-repeat; height:400px; ">
               <div class="banner-text" style="position:absolute; top:50%; left:50%; transform: translate(-50%, -50%); text-align:center; color: #fff;">
-                <h1 style="background: rgba(0,0,0,0.7); color: #fff; display: inline-block; padding: 0.5em 1em; border-radius: 8px;">
+                <h1 style="background: rgba(0,0,0,0.7); color: #fff; display: inline-block; padding: 0.5em 1em; border-radius: 8px; margin-bottom: 0.5em;">
                   <?php echo $value['titulo']; ?>
                 </h1>
-                <p class="text-dark bg-light"><?php echo $value['descripcion']; ?></p>
-                <a href="<?php echo $value['link']; ?>" class="btn btn-primary"><?php echo $value['boton']?></a>
+                <br/>
+                <p style="background: rgba(0,0,0,0.7); color: #fff; display: inline-block; padding: 0.5em 1em; border-radius: 8px; font-size: 1.2em; margin-bottom: 1em;">
+                  <?php echo $value['descripcion']; ?>
+                </p>
+                <br/>
+                <a href="<?php echo $value['link']; ?>" class="btn btn-primary btn-lg" style="margin-top: 0.5em;"><?php echo $value['boton']?></a>
               </div>
             </section>
 

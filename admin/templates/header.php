@@ -3,6 +3,15 @@
 
 session_start();
 
+$timeout = 300;
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $timeout)) {
+    session_unset();
+    session_destroy();
+    header("Location:$url_base/admin/login.php?timeout=1");
+    exit();
+}
+$_SESSION['LAST_ACTIVITY'] = time();
+
 if(isset($_SESSION["usuario"])){
     if ($_SESSION["rol"]!=1){
         header("Location:$url_base/login.php");
@@ -48,7 +57,7 @@ if(isset($_SESSION["usuario"])){
                     <a class="nav-item nav-link" href="<?php echo $url_base;?>/seccion/menu/">Menu</a>
                     <a class="nav-item nav-link" href="<?php echo $url_base;?>/seccion/comentarios/">Comentarios</a>
                     <a class="nav-item nav-link" href="<?php echo $url_base;?>/seccion/usuarios/">Usuarios</a>
-                    
+                    <a class="nav-item nav-link" href="../index.php">Restaurant</a>
                     <a class="nav-item nav-link" href="<?php echo $url_base;?>/cerrar.php/">Cerrar Sesion</a>
 
                 </div>

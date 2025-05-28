@@ -1,8 +1,17 @@
 <?php $url_base="http://localhost/restaurant"; ?>
 <?php 
-include("../../admin/bd.php");
+include($_SERVER['DOCUMENT_ROOT'] . '/restaurant/admin/bd.php');
 
 session_start();
+
+$timeout = 300;
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $timeout)) {
+    session_unset();
+    session_destroy();
+    header("Location:$url_base/admin/login.php?timeout=1");
+    exit();
+}
+$_SESSION['LAST_ACTIVITY'] = time();
 
 if(!(isset($_SESSION["usuario"]))){
    
@@ -129,6 +138,11 @@ $banner_activo = $sentencia->fetch(PDO::FETCH_ASSOC);
                         <a class="dropdown-item" href="<?php echo $url_base;?>/user/Favoritos/index.php"
                           >Favoritos</a
                         >
+                        <?php if ($_SESSION['rol'] == 1){ ?>
+                        <a class="dropdown-item" href="<?php echo $url_base;?>/admin/index.php"
+                          >Administracion</a
+                        >
+                        <?php } ?>
                         <a class="dropdown-item" href="<?php echo $url_base; ?>/admin/cerrar.php"
                           >Cerrar Sesion</a
                         >
@@ -141,6 +155,6 @@ $banner_activo = $sentencia->fetch(PDO::FETCH_ASSOC);
              </nav>
     </header>
     <main class="flex-grow-1">
-    <!-- El resto del contenido irá aquí, no cierres <main> ni <body> aquí -->
+
 
 

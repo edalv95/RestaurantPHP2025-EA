@@ -2,7 +2,6 @@
 
 $url_base="http://localhost/restaurant/admin";
 include("../../user/templates/header.php");
-include("../../admin/bd.php");
 
 print_r($_SESSION);
 if($_POST){

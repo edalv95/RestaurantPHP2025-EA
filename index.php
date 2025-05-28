@@ -1,10 +1,8 @@
 <?php
-include("admin/bd.php");
+// Solo incluir el header, que ya incluye la base de datos y session_start
+include("user/templates/header.php");
 
-$url_base="http://localhost/restaurant/";
-
-session_start();
-
+// Obtener datos después del header
 $sentencia = $conexion->prepare("SELECT * FROM tbl_banners WHERE activo = 1");
 $sentencia->execute();
 $banner_activo = $sentencia->fetch(PDO::FETCH_ASSOC);
@@ -20,146 +18,18 @@ $lista_menu = $sentencia->fetchall(PDO::FETCH_ASSOC);
 ?>
 
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <title><?php echo $banner_activo['titulo']?></title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-
-        <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-        />
-
-        <style>
-          .menu-card-img {
-            height: 200px;
-            object-fit: cover;
-          }
-          .menu-card {
-            min-height: 420px;
-            max-width: 320px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            flex-direction: column;
-          }
-          .chef-card-img {
-            height: 220px;
-            width: 100%;
-            object-fit: cover;
-            border-radius: 10px 10px 0 0;
-          }
-        </style>
-
-    </head>
-
-    <body>
-        <header>
-            <!-- place navbar here -->
-             <nav
-              class="navbar navbar-expand-lg navbar-dark bg-dark"
-             >
-              <div class="container">
-                <a class="navbar-brand" href="<?php echo $url_base; ?>"><i class="fas fa-utensils"></i> <?php echo $banner_activo['titulo']?></a>
-                <button
-                  class="navbar-toggler d-lg-none"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapsibleNavId"
-                  aria-controls="collapsibleNavId"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavId">
-                  <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="<?php echo $url_base; ?>" aria-current="page"
-                        >Inicio
-                        <span class="visually-hidden">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#Carta">Carta</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#Chefs">Chefs</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#Testimonios">Testimonios</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#Contactos">Contactos</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#Horarios">Horarios</a>
-                    </li>
-                  </ul>
-                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <?php if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] == "") { ?>
-                    <li class="nav-item">
-                      <a class="nav-link" href="<?php echo $url_base; ?>admin/login.php">Login</a>
-                    </li>
-                    <?php } ?>
-                    <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != "") { ?>
-                    <li class="nav-item dropdown">
-                      <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="dropdownId"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        ><?php echo $_SESSION['usuario']?></a
-                      >
-                      <div
-                        class="dropdown-menu dropdown-menu-end"
-                        aria-labelledby="dropdownId"
-                      >
-                        <a class="dropdown-item" href="<?php echo $url_base;?>user/Carrito/index.php"
-                          >Carrito de Compras</a
-                        >
-                        <a class="dropdown-item" href="<?php echo $url_base;?>/user/Historial/index.php"
-                          >Historial</a
-                        >
-                        <a class="dropdown-item" href="<?php echo $url_base;?>user/Favoritos/index.php"
-                          >Favoritos</a
-                        >
-                        <a class="dropdown-item" href="<?php echo $url_base; ?>admin/cerrar.php"
-                          >Cerrar Sesion</a
-                        >
-                      </div>
-                    </li>
-                    <?php } ?>
-                  </ul>
-                </div>
-              </div>
-             </nav>
-             
             <section id="banner" class="container-fluid p-0">
              <div class="banner-img" style="position:relative; background:url('images/banners/<?php echo $banner_activo['foto']?>') center/cover no-repeat; height:400px; ">
               <div class="banner-text" style="position:absolute; top:50%; left:50%; transform: translate(-50%, -50%); text-align:center; color: #fff;">
-                <h1 style="background: rgba(0,0,0,0.7); color: #fff; display: inline-block; padding: 0.5em 1em; border-radius: 8px;">
+                <h1 style="background: rgba(0,0,0,0.7); color: #fff; display: inline-block; padding: 0.5em 1em; border-radius: 8px; margin-bottom: 0.5em;">
                   <?php echo $banner_activo['titulo']; ?>
                 </h1>
-                <p class="text-dark bg-light"><?php echo $banner_activo['descripcion']; ?></p>
-                <a href="<?php echo $banner_activo['link']; ?>" class="btn btn-primary"><?php echo $banner_activo['boton']?></a>
+                <br/>
+                <p style="background: rgba(0,0,0,0.7); color: #fff; display: inline-block; padding: 0.5em 1em; border-radius: 8px; font-size: 1.2em; margin-bottom: 1em;">
+                  <?php echo $banner_activo['descripcion']; ?>
+                </p>
+                <br/>
+                <a href="<?php echo $banner_activo['link']; ?>" class="btn btn-primary btn-lg" style="margin-top: 0.5em;"><?php echo $banner_activo['boton']?></a>
               </div>
             </section>
 
@@ -173,10 +43,6 @@ $lista_menu = $sentencia->fetchall(PDO::FETCH_ASSOC);
               </div>
             </section>
 
-            
-
-
-        </header>
         </br>
         </br>
         </br>
@@ -364,35 +230,36 @@ $lista_menu = $sentencia->fetchall(PDO::FETCH_ASSOC);
         </div>
         </section>
 
-        </main>
-        <footer class="bg-dark text-light text-center">
-            <div class="container">
-                <p>&copy; 2025 Restaurante Algo. Todos los derechos reservados.</p>
-                <div>
-                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
+<style>
+.chef-card-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px 8px 0 0;
+}
+</style>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-    </body>
-</html>
 
+<button type="button" id="btnScrollTop" class="btn btn-primary btn-lg" style="position: fixed; bottom: 40px; right: 40px; display: none; z-index: 9999;">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('btnScrollTop');
+  if (window.scrollY > 200) {
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+});
+var btn = document.getElementById('btnScrollTop');
+btn && btn.addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
 
 <?php
-
-
-
+include("user/templates/footer.php");
 ?>
