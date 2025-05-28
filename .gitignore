@@ -1,0 +1,15 @@
+# Ignorar archivos y carpetas de Visual Studio y carpeta duplicada
+.vs/
+RestaurantPHP2025EA/
+# Ignorar archivos temporales y de sistema
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+# Ignorar archivos de entorno de PHP
+vendor/
+.env
+# Ignorar archivos de caché de PHP
+*.cache
+# Ignorar archivos de configuración de usuario de VSCode
+.vscode/
