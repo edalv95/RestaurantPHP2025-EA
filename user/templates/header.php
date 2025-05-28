@@ -63,6 +63,14 @@ $banner_activo = $sentencia->fetch(PDO::FETCH_ASSOC);
             display: flex;
             flex-direction: column;
           }
+          .dropdown-menu.dropdown-menu-end.bg-dark.text-white .dropdown-item {
+            color: #fff;
+          }
+          .dropdown-menu.dropdown-menu-end.bg-dark.text-white .dropdown-item:hover,
+          .dropdown-menu.dropdown-menu-end.bg-dark.text-white .dropdown-item:focus {
+            background-color: #343a40;
+            color: #ffc107;
+          }
         </style>
 
     </head>
@@ -126,7 +134,7 @@ $banner_activo = $sentencia->fetch(PDO::FETCH_ASSOC);
                         ><?php echo $_SESSION['usuario']?></a
                       >
                       <div
-                        class="dropdown-menu dropdown-menu-end"
+                        class="dropdown-menu dropdown-menu-end bg-dark text-white"
                         aria-labelledby="dropdownId"
                       >
                         <a class="dropdown-item" href="<?php echo $url_base;?>/user/Carrito/index.php"

@@ -1,8 +1,6 @@
 <?php
-// Solo incluir el header, que ya incluye la base de datos y session_start
 include("user/templates/header.php");
 
-// Obtener datos después del header
 $sentencia = $conexion->prepare("SELECT * FROM tbl_banners WHERE activo = 1");
 $sentencia->execute();
 $banner_activo = $sentencia->fetch(PDO::FETCH_ASSOC);
